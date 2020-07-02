@@ -2,7 +2,7 @@
 simple html code for ui display
 
 ## Canvas
-![classloader](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/oka96/java/master/classloader/classloader.wsd)
+![classloader](https://raw.githubusercontent.com/oka96/html-playground/master/canvas.html)
 
 ## Circle
-![classloader](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/oka96/java/master/classloader/classloader.wsd)
+![classloader](https://raw.githubusercontent.com/oka96/html-playground/master/circle.html)
