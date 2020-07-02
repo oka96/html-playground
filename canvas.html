@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Draw a rectangular shape</title>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+function draw() {
+    var arr = [40,30,15,8,4,3];
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var context = canvas.getContext('2d');
+        var sx = 0, sy = 0;
+        var ex = 400, ey = 400;
+        var horizontal = true;
+        var portion = 100;
+        
+        for(var i=0; i < arr.length; i++){
+            var diff;
+            if(horizontal){
+                diff = Math.floor((ex-sx)*(arr[i]/portion));
+                context.fillStyle = "#000000";
+                context.fillRect(sx,sy,diff-1,ey);
+                let mx = mid(sx,sx+diff);
+                let my = mid(sy,ey);
+                writeText(context,arr[i],mx,my);
+                sx = sx + diff;
+                horizontal = false;
+                portion = portion - arr[i];
+            }else{
+                diff = Math.floor((ey-sy)*(arr[i]/portion));
+                context.fillStyle = "#FF0000";
+                context.fillRect(sx,sy,ex,diff-1);
+                let mx = mid(sx,ex);
+                let my = mid(sy,sy+diff);
+                writeText(context,arr[i],mx,my);
+                sy = sy + diff;
+                horizontal = true;
+                portion = portion - arr[i];
+            }
+        }
+    }
+}
+
+function writeText(context,text,x,y){
+    context.font = "20px Arial";
+    context.fillStyle = "green";
+    context.textAlign = "center";
+    context.fillText(text,x,y);
+}
+
+function mid(a,b){
+    return Math.floor((a+b)/2);
+}
+</script>
+
+</body>
+</html>

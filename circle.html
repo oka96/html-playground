@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Draw circle</title>
+</head>
+<body onload="draw();">
+<canvas id="canvas" width="400" height="400"></canvas>
+
+<script>
+function draw() {
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var circle = new Circle(200,200,200,15);
+        var pointArr = circle.generate();
+        var ctx = canvas.getContext('2d');
+        ctx.beginPath();
+        for(var i=0;i<pointArr.length-1;i++){
+            var curP = pointArr[i];
+            for(var j=i+1;j<pointArr.length;j++){
+                ctx.moveTo(curP.x,curP.y);
+                var nextP = pointArr[j];
+                ctx.lineTo(nextP.x,nextP.y);
+            }
+        }
+        ctx.stroke();
+    }
+}
+
+class Point {
+    constructor(x,y){
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class Circle {
+    constructor(x,y,r,p){
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.p = p;
+    }
+    generate(){
+        var pointArr = [];
+        for(var i=0;i<this.p;i++){
+            var deg = 360*(i/this.p);
+            console.log(i,deg);
+            var px = this.x+this.r*Math.cos(degToRad(deg));
+            var py = this.y+this.r*Math.sin(degToRad(deg));
+            var curP = new Point(px,py);
+            pointArr.push(curP);
+        }
+        return pointArr;
+    }
+}
+
+function degToRad(deg){
+    var pi = Math.PI;
+    return deg*(pi/180);
+}
+</script>
+
+</body>
+</html>
